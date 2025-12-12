@@ -12,8 +12,30 @@ const DeviceSchema = new mongoose.Schema({
     lastUpdate:{
         type: Number,
         required: true,
-        default: 0
-    }
+        default: 0 
+    },    
+    waterLevel: {
+    type: Number, // percentage
+    required: true,
+  },
+  flowRate: {
+    type: Number, // liters per minute
+    required: true,
+  },
+  totalConsumption: {
+    type: Number, // liters
+    required: true,
+  },
+  meterStatus: {
+    type: String,
+    enum: ["Normal", "Leak Detected", "Low Pressure"],
+    default: "Normal",
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now,
+  }, 
+    
 });
 const Device = mongoose.model('Device', DeviceSchema);
 
