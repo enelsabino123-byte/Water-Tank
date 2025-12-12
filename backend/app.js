@@ -3,6 +3,7 @@ import { dbConnection } from './config/db_access.js';
 import { config as dotenvConfig } from 'dotenv';
 import fs from 'fs';
 import deviceRouter from './routers/device.routers.js';
+import checkOfflineDevices from './functions/checkOfflineDevices.js';
 const app = express();
 app.use(express.json());
 const PORT = process.env.PORT || 5000;
@@ -18,6 +19,8 @@ app.get("/", (req, res) =>{
     res.json({message: "Server is working!"})
 });
 app.use("/devices", deviceRouter);
+
+setInterval(checkOfflineDevices, 30000);
 
 app.listen(PORT, ()=>{
     dbConnection();
