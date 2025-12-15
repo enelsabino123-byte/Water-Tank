@@ -28,7 +28,7 @@ dotenvConfig({ path: secretPath });
 app.get("/", (req, res)=>{
     res.json({message: "Server is working!"})
 });
-app.use("/devices", deviceRouter);
+app.use("/device", deviceRouter);
 
 setInterval(checkOfflineDevices, 30000);
 

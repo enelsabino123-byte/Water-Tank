@@ -31,7 +31,7 @@ const DeviceSchema = new mongoose.Schema({
     enum: ["Normal", "Leak Detected", "Low Pressure"],
     default: "Normal",
   },
-  createdAt: {
+  billingStartDate: {
     type: Date,
     default: Date.now,
   }, 
