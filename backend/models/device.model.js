@@ -17,14 +17,17 @@ const DeviceSchema = new mongoose.Schema({
     waterLevel: {
     type: Number, // percentage
     required: true,
+    default: 0
   },
   flowRate: {
     type: Number, // liters per minute
     required: true,
+    default: 0
   },
   totalConsumption: {
     type: Number, // liters
     required: true,
+    default: 0
   },
   meterStatus: {
     type: String,

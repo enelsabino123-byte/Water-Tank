@@ -11,6 +11,7 @@ export const registerNewDevice = async(req, res) =>{
         await newDevice.save();
         res.status(200).json({success: true, data: [newDevice]});
     }catch(error){
+        console.log(error.message);
         res.status(500).json({success: false, message:"Server Error"});
     }
     
