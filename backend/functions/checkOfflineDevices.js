@@ -16,6 +16,9 @@ const checkOfflineDevices = async() => {
             try{
                 if(timeNow >= (device.lastUpdate+idleTimeThreshold)){
                     device.isOnline=false;
+                    device.meterStatus=0;
+                    device.flowRate=0;
+                    device.waterLevel=0;
                     await Device.findByIdAndUpdate(device._id, device, {new: true});
                 }
             }catch(e){

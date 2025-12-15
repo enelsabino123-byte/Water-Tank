@@ -37,7 +37,9 @@ export const updateDevice = async(req, res)=>{}
 
 export const deviceOnline = async(req, res) =>{
     const deviceID =  req.body.deviceID;
-    
+    const meterStatus = req.body.meterStatus;
+    const flowRate = req.body.flowRate;
+    const waterLevel = req.body.waterLevel;
     try{
         const result = await Device.find({deviceID});
         if(!result){
@@ -46,6 +48,10 @@ export const deviceOnline = async(req, res) =>{
             const device=result[0];
 
             device.isOnline = true;
+            device.meterStatus=meterStatus;
+            device.flowRate=flowRate;
+            device.waterLevel=waterLevel;
+            device.lastUpdate=Date.now();
             const updatedDevice = await Device.findByIdAndUpdate(device._id, device, {new: true});
             res.status(200).json({success: true, data: [updatedDevice]});
         }
