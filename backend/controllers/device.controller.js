@@ -67,3 +67,27 @@ export const deviceOnline = async(req, res) =>{
     
     return res;
 }
+
+export const addUsage = async(req, res) =>{
+    const deviceID =  req.body.deviceID;
+    const usage = req.body.usage;
+    
+    try{
+        const result = await Device.find({deviceID});
+        if(!result){
+            res.status(500).json({success: false, message:"Device Not found!"});    
+        }else{
+            const device=result[0];
+
+            device.totalConsumption=(device.totalConsumption+usage);
+
+            const updatedDevice = await Device.findByIdAndUpdate(device._id, device, {new: true});
+            res.status(200).json({success: true, data: [updatedDevice]});
+        }
+    }catch(error){
+        console.log(error.message);
+        res.status(500).json({success: false, message:"Server Error"});
+    }
+    
+    return res;
+}
