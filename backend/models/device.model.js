@@ -15,9 +15,9 @@ const DeviceSchema = new mongoose.Schema({
         default: 0 
     },    
     waterLevel: {
-    type: Number, // percentage
+    type: String, // percentage
     required: true,
-    default: 0
+    default: "Low"
   },
   flowRate: {
     type: Number, // liters per minute

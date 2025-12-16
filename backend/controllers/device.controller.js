@@ -39,7 +39,12 @@ export const deviceOnline = async(req, res) =>{
     const deviceID =  req.body.deviceID;
     const meterStatus = req.body.meterStatus;
     const flowRate = req.body.flowRate;
-    const waterLevel = req.body.waterLevel;
+    var waterLevel = "Low"; 
+    if(req.body.waterLevel === 'O'){
+        waterLevel="Ok";
+    }else if(req.body.waterLevel === 'F'){
+        waterLevel ="Full";
+    }
     try{
         const result = await Device.find({deviceID});
         if(!result){
